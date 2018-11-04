@@ -143,28 +143,76 @@ public class Main {
         if(frequencyTest(bits)==false)
         {
             System.out.println("Ciag nie przeszedl testu czestosci wiec nie moze zostac poddany testowi serii");
+
         }
-        int n=bits.length();
+        else {
+            int oneLength = 0;
 
-        int zeros=0;
-        int ones=0;
+            int twoLength = 0;
+            int threeLength = 0;
+            int fourLength = 0;
+            int fiveLength = 0;
+            int sixOrMoreLength = 0;
 
-        for(int i=0;i<bits.length();i++)
-        {
-            if(bits.charAt(i)=='1') {
-                ones++;
+            int counter = 1;
+            String temp = bits.substring(0, 1);
+            for (int i = 1; i < bits.length(); i++) {
+
+                if (temp.charAt(0) == bits.charAt(i)) {
+                    temp = temp + bits.charAt(i);
+                    counter++;
+                }
+                if (temp.charAt(0) != bits.charAt(i)) {
+                    if (counter == 1) {
+                        oneLength++;
+                        counter = 1;
+                    }
+                    if (counter == 2) {
+                        twoLength++;
+                        counter = 1;
+                    }
+                    if (counter == 3) {
+                        threeLength++;
+                        counter = 1;
+                    }
+                    if (counter == 4) {
+                        fourLength++;
+                        counter = 1;
+                    }
+                    if (counter == 5) {
+                        fiveLength++;
+                        counter = 1;
+                    }
+                    if (counter == 6) {
+                        sixOrMoreLength++;
+                        counter = 1;
+                    }
+                    temp = new String();
+                    temp = temp + bits.charAt(i);
+                }
+            }
+
+
+            System.out.println("Ciagow jednobitowych jest: " + oneLength);
+            System.out.println("Ciagow dwubitowych jest: " + twoLength);
+            System.out.println("Ciagow trzybitowych jest: " + threeLength);
+            System.out.println("Ciagow czterobitowych jest: " + fourLength);
+            System.out.println("Ciagow pieciobitowych jest: " + fiveLength);
+            System.out.println("Ciagow szeciobitowych i wiekszych jest: " + sixOrMoreLength);
+
+
+            if (oneLength > 2315 && oneLength < 2685 && twoLength > 1114 && twoLength < 1386 && threeLength > 527 && threeLength < 723 && fourLength > 240 && fourLength < 384 && fiveLength > 103 && fiveLength < 209 && sixOrMoreLength > 103 && sixOrMoreLength < 209) {
+                flag = true;
+            } else {
+                flag = false;
             }
         }
 
-        double pi =n/ones;
-
-        for(int i=0;i<bits.length();i++)
-        {
-
-        }
-
-
         return flag;
+
+
+
+
     }
 
 
