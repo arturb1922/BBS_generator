@@ -3,9 +3,9 @@
 public class Main {
 
     public static String bitsGenerated = new String();
-    private static int p = 11;
-    private static int q = 19;
-    private static int seed = 3;
+    private static int p = 139;
+    private static int q = 251;
+    private static int seed = 26;
 
     public static String toBits()
     {
@@ -13,6 +13,7 @@ public class Main {
 
         for (int i = 0; i <20000; ++i) {
             int temp=b.getrandom();
+            System.out.println(temp);
             String x="";
             x=Integer.toBinaryString(temp);
             String bit=x.substring(x.length()-1);
@@ -42,13 +43,13 @@ public class Main {
         System.out.println("Liczba zer w ciagu " + zeros);
         System.out.println("Liczba jedynek w ciagu  " + ones);
 
-        if(zeros-ones>1 || ones-zeros>1)
+        if(zeros>9725 && zeros<10275 && ones>9725 && ones<10275)
         {
-            flag=false;
+            flag=true;
         }
         else
         {
-           flag=true;
+           flag=false;
         }
 
 
@@ -87,7 +88,7 @@ public class Main {
 
         System.out.println("Liczba sekwencji 00 w ciagu " + zeros);
         System.out.println("Liczba sekwencji 01 w ciagu " + zeroone);
-        System.out.println("Liczba sekwencji 10 w ciagu" + onezero);
+        System.out.println("Liczba sekwencji 10 w ciagu " + onezero);
         System.out.println("Liczba sekwencji 11 w ciagu " + ones);
 
 
@@ -123,6 +124,7 @@ public class Main {
                 temp=temp+bits.charAt(i);
             }
         }
+        System.out.println("Najdluzszy maksymalny podciag wynosi: "+ max);
 
         if (max>=26)
         {
@@ -140,14 +142,13 @@ public class Main {
     {
         boolean flag=false;
 
-        if(frequencyTest(bits)==false)
-        {
-            System.out.println("Ciag nie przeszedl testu czestosci wiec nie moze zostac poddany testowi serii");
-
-        }
-        else {
+//        if(frequencyTest(bits)==false)
+//        {
+//            System.out.println("Ciag nie przeszedl testu czestosci wiec nie moze zostac poddany testowi serii");
+//
+//        }
+//        else {
             int oneLength = 0;
-
             int twoLength = 0;
             int threeLength = 0;
             int fourLength = 0;
@@ -183,7 +184,7 @@ public class Main {
                         fiveLength++;
                         counter = 1;
                     }
-                    if (counter == 6) {
+                    if (counter >= 6) {
                         sixOrMoreLength++;
                         counter = 1;
                     }
@@ -206,7 +207,7 @@ public class Main {
             } else {
                 flag = false;
             }
-        }
+       // }
 
         return flag;
 
